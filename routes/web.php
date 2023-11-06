@@ -44,3 +44,8 @@ use App\Http\Controllers\ChangePassword;
 		Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 		Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	});
+
+
+	Route::group(['prefix' => 'marca'], function () {
+		// Route::get('/', [])
+	});
