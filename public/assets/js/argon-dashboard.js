@@ -2085,6 +2085,7 @@ __webpack_require__.r(__webpack_exports__);
 window.PerfectScrollbar = perfect_scrollbar__WEBPACK_IMPORTED_MODULE_0__["default"];
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./custom */ "./resources/js/custom.js");
+__webpack_require__(/*! ./global */ "./resources/js/global.js");
 
 /***/ }),
 
@@ -2834,6 +2835,33 @@ window.darkMode = function (el) {
     el.removeAttribute("checked");
   }
 };
+
+/***/ }),
+
+/***/ "./resources/js/global.js":
+/*!********************************!*\
+  !*** ./resources/js/global.js ***!
+  \********************************/
+/***/ (() => {
+
+function requestIntoModal(url) {
+  console.log('here');
+  // blockpage();
+
+  // axios.get(url).then(view => {
+  //     unblockpage();
+
+  //     $('#modal-default').html(view.data);
+  //     $('#modal-default').modal('show');
+
+  // }).catch((erro) => {
+  //     unblockpage();
+  //     console.error('ERRO', erro)
+  //     // showNotify('Atenção', 'Ocorreu um erro ao carregar as informações', 'error');
+  // })
+}
+
+;
 
 /***/ }),
 
