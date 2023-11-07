@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.partials.header', ['title' => 'Lotes', 'pb'=> 'pb-8'])
+    @include('layouts.partials.header', ['title' => 'Fornecedores', 'pb'=> 'pb-8'])
     
     <div class="container-fluid mt--7">
         <div class="row">
@@ -13,7 +13,7 @@
                             <div class=" col text-right">
                                 <a href="" class="btn btn-outline-primary btn-md">Voltar</a>
 
-                                <a href="{{ route('lote.form') }}" class="btn btn-outline-success btn-md">Adicionar</a>
+                                <a href="{{ route('fornecedor.form') }}" class="btn btn-outline-success btn-md">Adicionar</a>
                             </div>
                         </div>
                     </div>

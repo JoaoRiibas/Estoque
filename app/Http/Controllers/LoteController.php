@@ -46,6 +46,7 @@ class LoteController extends Controller
     public function store(Request $request, $id = 0)
     {
         try{
+
             $validator = Validator::make($request->all(), [
                 'codigo' => 'required',
             ],[

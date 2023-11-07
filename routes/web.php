@@ -24,6 +24,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\MarcaController;
 
@@ -51,6 +52,13 @@ use App\Http\Controllers\MarcaController;
 		Route::get('/form/{id?}', [LoteController::class, 'form'])->name('lote.form');
 		Route::post('/store/{id?}', [LoteController::class, 'store'])->name('lote.store');
 		Route::delete('/delete/{id}', [LoteController::class, 'delete'])->name('lote.delete');
+	});
+
+	Route::group(['prefix' => 'fornecedor'], function(){
+		Route::get('/', [FornecedorController::class, 'index'])->name('fornecedor.index');
+		Route::get('/form/{id?}', [FornecedorController::class, 'form'])->name('fornecedor.form');
+		Route::post('/store/{id?}', [FornecedorController::class, 'store'])->name('fornecedor.store');
+		Route::delete('/delete/{id}', [FornecedorController::class, 'delete'])->name('fornecedor.delete');
 	});
 
 	Route::group(['middleware' => 'auth'], function () {
