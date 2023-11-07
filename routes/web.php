@@ -24,6 +24,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\LoteController;
 use App\Http\Controllers\MarcaController;
 
 	Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
@@ -40,10 +41,16 @@ use App\Http\Controllers\MarcaController;
 	
 	Route::group(['prefix' => 'marca'], function(){
 		Route::get('/', [MarcaController::class, 'index'])->name('marca.index');
-		Route::post('/filter', [MarcaController::class, 'filter'])->name('marca.filter');
 		Route::get('/form/{id?}', [MarcaController::class, 'form'])->name('marca.form');
 		Route::post('/store/{id?}', [MarcaController::class, 'store'])->name('marca.store');
 		Route::delete('/delete/{id}', [MarcaCOntroller::class, 'delete'])->name('marca.delete');
+	});
+
+	Route::group(['prefix' => 'lote'], function(){
+		Route::get('/', [LoteController::class, 'index'])->name('lote.index');
+		Route::get('/form/{id?}', [LoteController::class, 'form'])->name('lote.form');
+		Route::post('/store/{id?}', [LoteController::class, 'store'])->name('lote.store');
+		Route::delete('/delete/{id}', [LoteController::class, 'delete'])->name('lote.delete');
 	});
 
 	Route::group(['middleware' => 'auth'], function () {

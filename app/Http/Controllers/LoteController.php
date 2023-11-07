@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Marca;
+use App\Models\Lote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Html\Builder;
 
-class MarcaController extends Controller
+class LoteController extends Controller
 {
     public function index(Builder $builder)
     {
-
+    
         if(request()->ajax()){
-            $marcas = Marca::query();
+            $lotes = Lote::query();
             
-            return DataTables::of($marcas)
-                ->addColumn('action', function($marca){
-                    return view('marca.action', [
-                        'marca' => $marca
+            return DataTables::of($lotes)
+                ->addColumn('action', function($lote){
+                    return view('lote.action', [
+                        'lote' => $lote
                     ]);
                 })
                 ->rawColumns(['action'])
@@ -28,27 +28,28 @@ class MarcaController extends Controller
         }
 
         $html = $builder->columns([
-            ['data' => 'nome', 'name' => 'nome', 'title' => 'Nome', 'class'=> 'text-semibold'],
+            ['data' => 'cod_lote', 'name' => 'cod_lote', 'title' => 'Número do lote', 'class'=> 'text-semibold'],
+            ['data' => 'descricao', 'name' => 'descricao', 'title' => 'Descrição', 'class'=> 'text-semibold'],
             ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'col-md-2'],
         ]);
 
-        return view('marca.index', compact('html'));
+        return view('lote.index', compact('html'));
     }
 
     public function form($id = 0)
     {
-        $marca = $id > 0 ? Marca::findOrFail($id) : new Marca();
-
-        return view('marca.form', compact('marca'));
+        $lote = $id > 0 ? Lote::findOrFail($id) : new Lote();
+    
+        return view('lote.form', compact('lote'));
     }
 
     public function store(Request $request, $id = 0)
     {
         try{
             $validator = Validator::make($request->all(), [
-                'nome' => 'required',
+                'codigo' => 'required',
             ],[
-                'nome.required' => 'Insira o nome da marca!',
+                'codigo.required' => 'Insira o código do lote!',
             ]);
 
             if($validator->fails()){
@@ -58,21 +59,22 @@ class MarcaController extends Controller
             DB::beginTransaction();
 
             $array_store = [
-                'nome' => $request->nome,
+                'cod_lote' => $request->codigo,
+                'descricao' => $request->descricao
             ];
-
+        
             if($id != 0) {
                 //UPDATE
-                $marca = Marca::findOrFail($id);
-                $marca->update($array_store);
+                $lote = Lote::findOrFail($id);
+                $lote->update($array_store);
             }else {
                 //INSERT
-                $marca = Marca::create($array_store);
+                $lote = Lote::create($array_store);
             }
 
             DB::commit();
-            
-            return response()->json(['success'=> true, 'message' => '', 'data' => []]);
+        
+            // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
 
         }catch(\Exception $e){
             report($e);
@@ -85,8 +87,8 @@ class MarcaController extends Controller
         try{
             DB::beginTransaction();
             
-            $marca = Marca::findOrFail($id);
-            $marca->delete();
+            $lote = Lote::findOrFail($id);
+            $lote->delete();
 
             DB::commit();
 
