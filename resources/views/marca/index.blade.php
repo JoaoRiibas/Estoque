@@ -11,8 +11,7 @@
                     <div class="card-header border- 0">
                         <div class="row align-items-center">
                             <div class=" col text-right">
-                                <a href="" class="btn btn-outline-primary btn-md">Voltar</a>
-
+                                <a href="{{route('home')}}" class="btn btn-outline-primary btn-md">Voltar</a>
                                 <a onclick="openModal('{{route('marca.form')}}')" class="btn btn-outline-success btn-md">Adicionar</a>
                             </div>
                         </div>
@@ -53,7 +52,6 @@
                 console.log('ERRO');
             })
         };
-
     </script>
 
 @endpush
