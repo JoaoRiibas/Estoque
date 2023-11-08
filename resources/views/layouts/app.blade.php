@@ -5,8 +5,8 @@
     
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="/img/favicon.png">
+    {{-- <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon.png"> --}}
     
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -21,7 +21,6 @@
     
     <!-- CSS Files -->
     <link id="pagestyle" href="assets/css/argon-dashboard.css" rel="stylesheet" />
-
     <link id="pagestyle" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 </head>
@@ -33,24 +32,16 @@
     @endguest
 
     @auth
-        @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality']))
-            @yield('content')
-        @else
-            @if (!in_array(request()->route()->getName(), ['profile', 'profile-static']))
-                <div class="min-height-300 bg-primary position-absolute w-100"></div>
-            @elseif (in_array(request()->route()->getName(), ['profile-static', 'profile']))
-                <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-                    <span class="mask bg-primary opacity-6"></span>
-                </div>
-            @endif
-            @include('layouts.navbars.auth.sidenav')
-                <main class="main-content border-radius-lg">
-                    @yield('content')
-                </main>
-            @include('components.fixed-plugin')
-        @endif
+        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+        
+        @include('layouts.navbars.auth.sidenav')
+            <main class="main-content border-radius-lg">
+                @yield('content')
+            </main>
+        @include('components.fixed-plugin')
     @endauth
 
+    <!--   JQuery   -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
     <!--   Core JS Files   -->
@@ -68,10 +59,12 @@
         }
     </script>
 
+    <!--   Datatables   -->
     <script async defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/argon-dashboard.js"></script>
+
     @stack('js');
 </body>
 

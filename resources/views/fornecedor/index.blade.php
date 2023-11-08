@@ -36,6 +36,5 @@
 @endsection
 
 @push('js')
-
-{!! $html->scripts() !!}
+    {!! $html->scripts() !!}
 @endpush
