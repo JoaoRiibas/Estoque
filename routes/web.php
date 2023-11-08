@@ -27,6 +27,7 @@ use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ProdutoController;
 
 	Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');	
@@ -59,6 +60,15 @@ use App\Http\Controllers\MarcaController;
 		Route::get('/form/{id?}', [FornecedorController::class, 'form'])->name('fornecedor.form');
 		Route::post('/store/{id?}', [FornecedorController::class, 'store'])->name('fornecedor.store');
 		Route::delete('/delete/{id}', [FornecedorController::class, 'delete'])->name('fornecedor.delete');
+	});
+
+	Route::group(['prefix' => 'produto'], function(){
+		Route::get('/', [ProdutoController::class, 'index'])->name('produto.index');
+		Route::get('/form/{id?}', [ProdutoController::class, 'form'])->name('produto.form');
+		Route::post('/filter', [ProdutoController::class, 'filter'])->name('produto.filter');
+		Route::post('/store/{id?}', [ProdutoController::class, 'store'])->name('produto.store');
+		Route::delete('/delete/{id}', [ProdutoController::class, 'delete'])->name('produto.delete');
+		Route::get('/detalhes/{id}', [ProdutoController::class, 'detalhes'])->name('produto.detalhes');
 	});
 
 	Route::group(['middleware' => 'auth'], function () {
