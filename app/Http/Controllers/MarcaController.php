@@ -29,7 +29,7 @@ class MarcaController extends Controller
 
         $html = $builder->columns([
             ['data' => 'nome', 'name' => 'nome', 'title' => 'Nome', 'class'=> 'text-semibold'],
-            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'col-md-2'],
+            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'td-actions'],
         ]);
 
         return view('marca.index', compact('html'));
@@ -72,7 +72,7 @@ class MarcaController extends Controller
 
             DB::commit();
             
-            return response()->json(['success'=> true, 'message' => '', 'data' => []]);
+            return redirect()->route('marca.index');
 
         }catch(\Exception $e){
             report($e);
@@ -89,6 +89,8 @@ class MarcaController extends Controller
             $marca->delete();
 
             DB::commit();
+
+            return redirect()->route('marca.index');
 
         }catch(\Exception $e){
             report($e);

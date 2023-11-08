@@ -30,7 +30,7 @@ class LoteController extends Controller
         $html = $builder->columns([
             ['data' => 'cod_lote', 'name' => 'cod_lote', 'title' => 'Número do lote', 'class'=> 'text-semibold'],
             ['data' => 'descricao', 'name' => 'descricao', 'title' => 'Descrição', 'class'=> 'text-semibold'],
-            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'col-md-2'],
+            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'td-actions'],
         ]);
 
         return view('lote.index', compact('html'));
@@ -76,6 +76,7 @@ class LoteController extends Controller
             DB::commit();
         
             // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
+            return redirect()->route('lote.index');
 
         }catch(\Exception $e){
             report($e);
@@ -92,6 +93,8 @@ class LoteController extends Controller
             $lote->delete();
 
             DB::commit();
+            
+            return redirect()->route('lote.index');
 
         }catch(\Exception $e){
             report($e);

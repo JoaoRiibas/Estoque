@@ -10,9 +10,11 @@
                     
                     <div class="card-header border- 0">
                         <div class="row align-items-center">
-                            <div class=" col text-right">
+                            <div class="col-md-11 text-right">
+                                <a onclick="openModal('{{route('lote.form')}}')" class="btn btn-outline-primary btn-md">Adicionar</a>
+                            </div>
+                            <div class="col-md-1 text-right">
                                 <a href="{{route('home')}}" class="btn btn-outline-primary btn-md">Voltar</a>
-                                <a onclick="openModal('{{route('lote.form')}}')" class="btn btn-outline-success btn-md">Adicionar</a>
                             </div>
                         </div>
                     </div>

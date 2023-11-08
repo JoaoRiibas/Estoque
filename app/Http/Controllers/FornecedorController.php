@@ -31,7 +31,7 @@ class FornecedorController extends Controller
             ['data' => 'nome', 'name' => 'nome', 'title' => 'Nome', 'class'=> 'text-semibold'],
             ['data' => 'cnpj', 'name' => 'cnpj', 'title' => 'CNPJ', 'class'=> 'text-semibold'],
             ['data' => 'telefone', 'name' => 'telefone', 'title' => 'Telefone', 'class'=> 'text-semibold'],
-            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'col-md-2'],
+            ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'td-actions'],
         ]);
 
         return view('fornecedor.index', compact('html'));
@@ -40,7 +40,7 @@ class FornecedorController extends Controller
     public function form($id = 0)
     {
         $fornecedor = $id > 0 ? Fornecedor::findOrFail($id) : new Fornecedor;
-
+        
         return view('fornecedor.form', compact('fornecedor'));
     }
 
@@ -102,6 +102,7 @@ class FornecedorController extends Controller
             DB::commit();
 
             // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
+            return redirect()->route('fornecedor.index');
 
         }catch(\Exception $e){
             report($e);
@@ -122,6 +123,7 @@ class FornecedorController extends Controller
             DB::commit();
 
             // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
+            return redirect()->route('fornecedor.index');
 
         }catch(\Exception $e){
             report($e);

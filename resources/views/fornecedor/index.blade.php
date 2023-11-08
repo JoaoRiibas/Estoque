@@ -10,9 +10,11 @@
                     
                     <div class="card-header border- 0">
                         <div class="row align-items-center">
-                            <div class=" col text-right">
+                            <div class="col-md-11 text-right">
+                                <a onclick="openModal('{{route('fornecedor.form')}}')" class="btn btn-outline-primary btn-md">Adicionar</a>
+                            </div>
+                            <div class="col-md-1 text-right">
                                 <a href="{{route('home')}}" class="btn btn-outline-primary btn-md">Voltar</a>
-                                <a onclick="openModal('{{route('fornecedor.form')}}')" class="btn btn-outline-success btn-md">Adicionar</a>
                             </div>
                         </div>
                     </div>
@@ -36,21 +38,4 @@
 
 @push('js')
     {!! $html->scripts() !!}
-
-    <script>
-        
-        //Função responsável por buscar o conteúdo que vem de uma rota e inserir no modal
-        function openModal(url) {
-                
-            axios.get(url).then(view => {
-        
-                $('#modal-default').html(view.data);
-                $('#modal-default').modal('show');
-        
-            }).catch((erro) => {
-        
-                console.log('ERRO');
-            }) 
-        };
-    </script>
 @endpush

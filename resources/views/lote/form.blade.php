@@ -7,7 +7,7 @@
     <button type="button" data-dismiss="modal"
             class="btn btn-link"><i class="fa fa-times"></i> Fechar</button>
 
-    <button type="submit" class="btn btn-success pull-right">Salvar <i class="fa fa-arrow-right"></i></button>
+    <button type="submit" class="btn btn-outline-primary pull-right">Salvar <i class="fa fa-arrow-right"></i></button>
 @endsection
 
 @section('content')
