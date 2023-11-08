@@ -20,7 +20,7 @@
 
                     <div class="table-responsive pr-2 pl-2">
                         {!! $html->table([ 'style'=> 'width: 100%'], true) !!}
-                    </div>
+                    </div>  
 
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
@@ -32,7 +32,9 @@
             </div>
         </div>
     </div>
-    
-    {!! $html->scripts() !!}
 
 @endsection
+
+@push('js')
+    {!! $html->scripts() !!}
+@endpush

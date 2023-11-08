@@ -32,7 +32,9 @@
             </div>
         </div>
     </div>
-    
-    {!! $html->scripts() !!}
 
 @endsection
+
+@push('js')
+    {!! $html->scripts() !!}
+@endpush
