@@ -13,7 +13,7 @@
                             <div class=" col text-right">
                                 <a href="" class="btn btn-outline-primary btn-md">Voltar</a>
 
-                                <a href="{{ route('marca.form') }}" class="btn btn-outline-success btn-md">Adicionar</a>
+                                <a onclick="openModal('{{route('marca.form')}}')" class="btn btn-outline-success btn-md">Adicionar</a>
                             </div>
                         </div>
                     </div>
@@ -37,4 +37,23 @@
 
 @push('js')
     {!! $html->scripts() !!}
+
+    <script>
+
+        //Função responsável por buscar o conteúdo que vem de uma rota e inserir no modal
+        function openModal(url) {
+                
+            axios.get(url).then(view => {
+        
+                $('#modal-default').html(view.data);
+                $('#modal-default').modal('show');
+        
+            }).catch((erro) => {
+        
+                console.log('ERRO');
+            })
+        };
+
+    </script>
+
 @endpush

@@ -41,6 +41,8 @@
         @include('components.fixed-plugin')
     @endauth
 
+    <div id="modal-default" data-backdrop="static" class="modal fade" role="dialog"></div>
+
     <!--   JQuery   -->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
