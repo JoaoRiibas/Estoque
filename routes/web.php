@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,13 @@ use App\Http\Controllers\MarcaController;
 		Route::get('/form/{id?}', [FornecedorController::class, 'form'])->name('fornecedor.form');
 		Route::post('/store/{id?}', [FornecedorController::class, 'store'])->name('fornecedor.store');
 		Route::delete('/delete/{id}', [FornecedorController::class, 'delete'])->name('fornecedor.delete');
+	});
+
+	Route::group(['prefix' => 'categoria'], function(){
+		Route::get('/', [CategoriaController::class, 'index'])->name('categoria.index');
+		Route::get('/form/{id?}', [CategoriaController::class, 'form'])->name('categoria.form');
+		Route::post('/store/{id?}', [CategoriaController::class, 'store'])->name('categoria.store');
+		Route::delete('/delete/{id}', [CategoriaController::class, 'delete'])->name('categoria.delete');
 	});
 
 	Route::group(['middleware' => 'auth'], function () {
