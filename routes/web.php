@@ -67,9 +67,9 @@ use App\Http\Controllers\ProdutoController;
 		Route::get('/', [ProdutoController::class, 'index'])->name('produto.index');
 		Route::get('/form/{id?}', [ProdutoController::class, 'form'])->name('produto.form');
 		Route::post('/filter', [ProdutoController::class, 'filter'])->name('produto.filter');
+		Route::get('/detalhes/{id}', [ProdutoController::class, 'detalhes'])->name('produto.detalhes');
 		Route::post('/store/{id?}', [ProdutoController::class, 'store'])->name('produto.store');
 		Route::delete('/delete/{id}', [ProdutoController::class, 'delete'])->name('produto.delete');
-		Route::get('/detalhes/{id}', [ProdutoController::class, 'detalhes'])->name('produto.detalhes');
 	});
 
 	Route::group(['prefix' => 'categoria'], function(){
