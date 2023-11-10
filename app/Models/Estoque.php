@@ -18,9 +18,19 @@ class Estoque extends Model
         'qtd_produto', 
         'created_by'
     ];
-
+     
     protected $casts = [
-        'validade_produto'
+        'validade_produto' => 'datetime:d/m/Y',
+    ];
+
+    static $operacao_cor = [
+        0 => 'success',
+        1 => 'danger'
+    ];
+
+    static $operacao_nome = [
+        0 => 'ENTRADA',
+        1 => 'SAIDA'
     ];
 
     public function produto()
@@ -31,5 +41,15 @@ class Estoque extends Model
     public function lote()
     {
         return $this->belongsTo(Lote::class);
+    }
+
+    public function getOperacaoCor()
+    {
+        return SELF::$operacao_cor[$this->operacao];
+    }
+
+    public function getOperacaoNome()
+    {
+        return SELF::$operacao_nome[$this->operacao];
     }
 }

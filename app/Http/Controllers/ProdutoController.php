@@ -53,7 +53,7 @@ class ProdutoController extends Controller
             ->editColumn('criado_por', function($produto){
                 return User::findOrFail($produto->created_by)->value('username');
             })
-            ->rawColumns(['status', 'action'])
+            ->rawColumns(['action'])
             ->make(true);
     }
 

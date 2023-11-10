@@ -66,6 +66,10 @@ class FornecedorController extends Controller
                 'telefone.required' => 'Insira o telefone!'
             ]);
 
+            if($validator->fails()){
+                throw new \Exception(implode('; ', $validator->errors()->all()),-1);
+            }
+            
             DB::beginTransaction();
 
             $array_store = [

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('layouts.partials.header', ['title' => 'Categorias', 'pb'=> 'pb-8'])
+    @include('layouts.partials.header', ['title' => 'Estoque', 'pb'=> 'pb-8'])
     
     <div class="container-fluid mt--7">
         <div class="row">
@@ -11,7 +11,8 @@
                     <div class="card-header border- 0">
                         <div class="row align-items-center">
                             <div class="col-md-11 text-right">
-                                <a onclick="openModal('{{route('categoria.form')}}')" class="btn btn-outline-primary btn-md">Adicionar</a>
+                                <a onclick="openModal('{{route('estoque.entrada')}}')" class="btn btn-outline-primary btn-md">Entrada</a>
+                                <a onclick="openModal('{{route('estoque.baixa')}}')" class="btn btn-outline-danger btn-md">Baixa</a>
                             </div>
                             <div class="col-md-1 text-right">
                                 <a href="{{route('home')}}" class="btn btn-outline-primary btn-md">Voltar</a>
