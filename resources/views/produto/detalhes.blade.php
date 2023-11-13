@@ -12,17 +12,17 @@
     <div class="row">
         <div class="col-md-6">
             <ul>
-                <li><strong>Unidade de medida: </strong>{{$produto->detalhes->unidade_medida}}</li>
-                <li><strong>Valor de Custo: </strong>{{number_format($produto->detalhes->vl_custo, 2)}} R$</li>
+                <li><strong>Unidade de medida: </strong>{{$produto->unidade_medida}}</li>
+                <li><strong>Valor de Custo: </strong>{{number_format($produto->vl_custo, 2)}} R$</li>
                 <li><strong>Fornecedor: </strong>{{$fornecedor}}</li>
-                <li><strong>Descrição do produto: </strong>{{$produto->detalhes->descricao}}</li>
+                <li><strong>Descrição do produto: </strong>{{$produto->descricao}}</li>
             </ul>
         </div>
         <div class="col-md-6">
             <ul>
                 <li><strong>Categoria: </strong>{{$categoria}}</li>
-                <li><strong>Valor de Venda: </strong>{{number_format($produto->detalhes->vl_venda, 2)}} R$</li>
-                <li><strong>Informação Nuticional: </strong>{{$produto->detalhes->info_nutricional}}</li>
+                <li><strong>Valor de Venda: </strong>{{number_format($produto->vl_venda, 2)}} R$</li>
+                <li><strong>Informação Nuticional: </strong>{{$produto->info_nutricional}}</li>
             </ul>
         </div>
     </div>

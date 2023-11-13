@@ -59,7 +59,7 @@ class ProdutoController extends Controller
 
     public function form($id = 0)
     {
-        $produto = $id > 0 ? Produto::with('detalhes')->findOrFail($id) : new Produto();
+        $produto = $id > 0 ? Produto::findOrFail($id) : new Produto();
         $marcas = Marca::all();
         $categorias = Categoria::all();
         $fornecedores = Fornecedor::select('id', 'nome')->get()->toArray();
@@ -95,11 +95,8 @@ class ProdutoController extends Controller
                 'marca_id' => $request->marca, 
                 'fornecedor_id' => $request->fornecedor, 
                 'nome' => $request->nome, 
-                'created_by' => Auth()->user()->id
+                'created_by' => Auth()->user()->id,
                 //TODO::Incluir campo updated by
-            ];
-
-            $array_detalhes = [
                 'descricao' => $request->descricao, 
                 'unidade_medida' => $request->unidade_medida, 
                 'vl_custo' => $request->vl_custo, 
@@ -112,11 +109,9 @@ class ProdutoController extends Controller
                 unset($array_store['created_by']);
                 $produto = Produto::findOrFail($id);
                 $produto->update($array_store);
-                $produto->detalhes->update($array_detalhes);
             }else{
                 //UPDATE
                 $produto = Produto::create($array_store);
-                $produto->detalhes()->create($array_detalhes);
             }
 
             DB::commit();
@@ -149,7 +144,7 @@ class ProdutoController extends Controller
 
     public function detalhes($id)
     {
-        $produto = Produto::with('detalhes')->findOrFail($id);
+        $produto = Produto::findOrFail($id);
         $categoria = $produto->categoria->nome;
         $fornecedor = $produto->fornecedor->nome;
 

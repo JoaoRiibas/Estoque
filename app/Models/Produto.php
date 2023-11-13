@@ -14,7 +14,12 @@ class Produto extends Model
         'marca_id', 
         'fornecedor_id', 
         'nome', 
-        'created_by'
+        'created_by',
+        'descricao',
+        'unidade_medida',
+        'vl_custo',
+        'vl_venda',
+        'info_nutricional',
     ];
 
     public function categoria()

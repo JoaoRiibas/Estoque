@@ -54,29 +54,29 @@
     <div class="row">
         <div class="col-md-4 form-group">
             <label>Unidade de Medida</label>
-            <input name="unidade_medida" type="text" value="{{isset($produto->detalhes) ? $produto->detalhes->unidade_medida : ''}}" class="form-control">
+            <input name="unidade_medida" type="text" value="{{$produto->unidade_medida}}" class="form-control">
         </div>
         <div class="col-md-4 form-group">
             <label>Valor de Compra</label>
-            <input name="vl_custo" type="number" step="0.01" value="{{isset($produto->detalhes) ? $produto->detalhes->vl_custo : ''}}" class="form-control">
+            <input name="vl_custo" type="number" step="0.01" value="{{$produto->vl_custo}}" class="form-control">
         </div>
         <div class="col-md-4 form-group">
             <label>Valor de Venda</label>
-            <input name="vl_venda" type="number" step="0.01" value="{{isset($produto->detalhes) ? $produto->detalhes->vl_venda : ''}}" class="form-control">
+            <input name="vl_venda" type="number" step="0.01" value="{{$produto->vl_venda}}" class="form-control">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12 form-group">
             <label>Descrição</label>
-            <input name="descricao" type="text" value="{{isset($produto->detalhes) ? $produto->detalhes->descricao : ''}}" class="form-control">
+            <input name="descricao" type="text" value="{{$produto->descricao}}" class="form-control">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12 form-group">
             <label>Informações Nutricionais</label>
-            <input name="info" type="text" value="{{isset($produto->detalhes) ? $produto->detalhes->info_nutricional : ''}}" class="form-control">
+            <input name="info" type="text" value="{{$produto->info_nutricional}}" class="form-control">
         </div>
     </div>
 
