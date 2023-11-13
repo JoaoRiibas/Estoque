@@ -14,6 +14,6 @@ class FornecedorEndereco extends Model
         'cep', 
         'estado', 
         'cidade', 
-        'endereco'
+        'logradouro'
     ];
 }

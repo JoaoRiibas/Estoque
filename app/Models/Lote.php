@@ -11,6 +11,7 @@ class Lote extends Model
 
     protected $fillable = [
         'cod_lote', 
-        'descricao'
+        'descricao',
+        'validade'
     ];
 }

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('produto_id');
             $table->unsignedBigInteger('lote_id');
-            $table->dateTime('validade_produto');
             $table->boolean('operacao');
             $table->text('local_armazenamento');
             $table->integer('qtd_produto');

@@ -39,15 +39,15 @@
             <input name="cidade" type="text" value="{{isset($fornecedor->endereco) ? $fornecedor->endereco->cidade : ''}}" class="form-control">
         </div>
         <div class="col-6 form-group">
-            <label>Endereço</label>
-            <input name="endereco" type="text" value="{{isset($fornecedor->endereco) ? $fornecedor->endereco->endereco: ''}}" class="form-control">
+            <label>Logradouro</label>
+            <input name="logradouro" type="text" value="{{isset($fornecedor->logradouro) ? $fornecedor->endereco->logradouro: ''}}" class="form-control">
         </div>
     </div>
 
     <div class="row">
         <div class="col-12 form-group">
-            <label>Telefone</label>
-            <input name="telefone" type="number" value="{{$fornecedor->telefone}}" class="form-control">
+            <label>Telefone(s)</label>
+            {{-- <input name="telefone" type="number" value="{{$fornecedor->telefone}}" class="form-control"> --}}
         </div>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lote;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -49,6 +50,8 @@ class LoteController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'codigo' => 'required',
+                'descricao' => 'required',
+                'validade' => 'required',
             ],[
                 'codigo.required' => 'Insira o código do lote!',
             ]);
@@ -61,7 +64,8 @@ class LoteController extends Controller
 
             $array_store = [
                 'cod_lote' => $request->codigo,
-                'descricao' => $request->descricao
+                'descricao' => $request->descricao,
+                'validade' => DateTime::createFromFormat('Y-m-d',$request->dt_validade)
             ];
         
             if($id != 0) {

@@ -40,13 +40,6 @@
             <input name="quantidade" type="text" value="" class="form-control">
         </div>
         <div class="col-md-6 form-group">
-            <label>Data de Validade</label>
-            <input name="dt_validade" type="date" value="{{date('Y-m-d')}}" class="form-control">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12 form-group">
             <label>Local de Armazenamento</label>
             <input name="local_armazenamento" type="text" value="" class="form-control">
         </div>

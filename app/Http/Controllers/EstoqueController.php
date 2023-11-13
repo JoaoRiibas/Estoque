@@ -88,7 +88,6 @@ class EstoqueController extends Controller
                 'produto' => 'required',
                 'lote' => 'required',
                 'quantidade' => 'required',
-                'dt_validade' => $operacao == 0 ? 'required' : '',
                 'local_armazenamento' => $operacao == 0 ? 'required' : ''
             ]);
 
@@ -101,8 +100,7 @@ class EstoqueController extends Controller
                 
                 $array_store = [
                     'produto_id' => $request->produto, 
-                    'lote_id' => $request->lote, 
-                    'validade_produto' => DateTime::createFromFormat('Y-m-d',$request->dt_validade), 
+                    'lote_id' => $request->lote,  
                     'operacao' => $operacao,
                     'local_armazenamento' => $request->local_armazenamento, 
                     'qtd_produto' => $request->quantidade, 
@@ -129,8 +127,7 @@ class EstoqueController extends Controller
                 
                 $array_store = [
                     'produto_id' => $request->produto, 
-                    'lote_id' => $request->lote, 
-                    'validade_produto' => $produto[0]['validade_produto'], 
+                    'lote_id' => $request->lote,  
                     'operacao' => $operacao,
                     'local_armazenamento' => $produto[0]['local_armazenamento'], 
                     'qtd_produto' => $request->quantidade, 

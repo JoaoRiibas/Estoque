@@ -12,9 +12,13 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 form-group">
+        <div class="col-6 form-group">
             <label>Número do Lote</label>
             <input name="codigo" type="number" value="{{$lote->cod_lote}}" class="form-control">
+        </div>
+        <div class="col-6 form-group">
+            <label>Data de Validade</label>
+            <input name="dt_validade" type="date" value="{{date('Y-m-d')}}" class="form-control">
         </div>
     </div>
     <div class="row">
@@ -23,4 +27,5 @@
             <input name="descricao" type="text-area" value="{{$lote->descricao}}" class="form-control">
         </div>
     </div>
+
 @endsection

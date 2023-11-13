@@ -54,16 +54,14 @@ class FornecedorController extends Controller
                 'cep' => 'required',
                 'estado' => 'required',
                 'cidade' => 'required',
-                'endereco' => 'required',
-                'telefone' => 'required'
+                'logradouro' => 'required',
             ],[
                 'nome.required' => 'Insira o nome do fornecedor!',
                 'cnpj.required' => 'Insira o cnpj!',
                 'cep.required' => 'Insira o cep!',
                 'estado.required' => 'Insira o estado!',
                 'cidade.required' => 'Insira o cidade!',
-                'endereco.required' => 'Insira o endereco!',
-                'telefone.required' => 'Insira o telefone!'
+                'logradouro.required' => 'Insira o logradouro!'
             ]);
 
             if($validator->fails()){
