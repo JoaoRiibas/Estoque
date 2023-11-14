@@ -12,6 +12,6 @@ class Categoria extends Model
     protected $fillable = [
         'nome', 
         'descricao', 
-        'foto_url'
+        'foto_path'
     ];
 }

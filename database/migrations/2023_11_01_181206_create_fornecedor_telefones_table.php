@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('fornecedor_id');
             $table->string('numero');
+            $table->boolean('principal');
+            $table->boolean('is_whatsapp');
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onDelete('cascade');
             $table->timestamps();
         });

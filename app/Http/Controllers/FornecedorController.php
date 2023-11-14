@@ -54,16 +54,14 @@ class FornecedorController extends Controller
                 'cep' => 'required',
                 'estado' => 'required',
                 'cidade' => 'required',
-                'endereco' => 'required',
-                'telefone' => 'required'
+                'logradouro' => 'required',
             ],[
                 'nome.required' => 'Insira o nome do fornecedor!',
                 'cnpj.required' => 'Insira o cnpj!',
                 'cep.required' => 'Insira o cep!',
                 'estado.required' => 'Insira o estado!',
                 'cidade.required' => 'Insira o cidade!',
-                'endereco.required' => 'Insira o endereco!',
-                'telefone.required' => 'Insira o telefone!'
+                'logradouro.required' => 'Insira o logradouro!'
             ]);
 
             if($validator->fails()){
@@ -75,14 +73,15 @@ class FornecedorController extends Controller
             $array_store = [
                 'nome' => $request->nome,
                 'cnpj' => $request->cnpj,
-                'telefone' => $request->telefone
+                // 'telefone' => ''
+                //TODO::Cadastrar telefone
             ];
 
             $array_endereco = [
                 'cep' => $request->cep, 
                 'estado' => $request->estado, 
                 'cidade' => $request->cidade, 
-                'endereco' => $request->endereco
+                'logradouro' => $request->logradouro
             ];
 
             if($id != 0){

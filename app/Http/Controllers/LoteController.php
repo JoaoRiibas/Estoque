@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lote;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,9 @@ class LoteController extends Controller
                         'lote' => $lote
                     ]);
                 })
+                ->editColumn('validade', function($lote){
+                    return $lote->validade->format('d/m/Y');
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -30,6 +34,7 @@ class LoteController extends Controller
         $html = $builder->columns([
             ['data' => 'cod_lote', 'name' => 'cod_lote', 'title' => 'Número do lote', 'class'=> 'text-semibold'],
             ['data' => 'descricao', 'name' => 'descricao', 'title' => 'Descrição', 'class'=> 'text-semibold'],
+            ['data' => 'validade', 'name' => 'validade', 'title' => 'Valido Até', 'class'=> 'text-semibold'],
             ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'td-actions'],
         ]);
 
@@ -49,6 +54,8 @@ class LoteController extends Controller
 
             $validator = Validator::make($request->all(), [
                 'codigo' => 'required',
+                'descricao' => 'required',
+                'dt_validade' => 'required',
             ],[
                 'codigo.required' => 'Insira o código do lote!',
             ]);
@@ -56,14 +63,15 @@ class LoteController extends Controller
             if($validator->fails()){
                 throw new \Exception(implode('; ', $validator->errors()->all()),-1);
             }
-
+            
             DB::beginTransaction();
 
             $array_store = [
                 'cod_lote' => $request->codigo,
-                'descricao' => $request->descricao
+                'descricao' => $request->descricao,
+                'validade' => DateTime::createFromFormat('Y-m-d',$request->dt_validade)
             ];
-        
+
             if($id != 0) {
                 //UPDATE
                 $lote = Lote::findOrFail($id);

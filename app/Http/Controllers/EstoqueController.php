@@ -29,7 +29,7 @@ class EstoqueController extends Controller
                 ['data' => 'qtd_produto', 'name' => 'qtd_produto', 'title' => 'Quantidade'],
                 ['data' => 'operacao', 'name' => 'operacao', 'title' => 'Operação'],
                 ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Data Entrada'],
-                ['data' => 'validade_produto', 'name' => 'validade_produto', 'title' => 'Válido Até'],
+                // ['data' => 'validade_produto', 'name' => 'validade_produto', 'title' => 'Válido Até'],
             ])->ajax([
                 'url' => route('estoque.filter'),
                 'type' => 'POST',
@@ -52,9 +52,9 @@ class EstoqueController extends Controller
             ->editColumn('created_at', function($estoque){
                 return $estoque->created_at->format('d/m/Y');
             })
-            ->editColumn('validade_produto', function($estoque){
-                return $estoque->validade_produto->format('d/m/Y');
-            })
+            // ->editColumn('validade_produto', function($estoque){
+            //     return $estoque->validade_produto->format('d/m/Y');
+            // })
             ->editColumn('operacao', function($estoque){
                 // return '<span class="badge bg-gradient-' . $estoque->getOperacaoCor() . '">' . $estoque->getOperacaoNome() . '</span>';
                 return $estoque->getOperacaoNome();
@@ -88,7 +88,6 @@ class EstoqueController extends Controller
                 'produto' => 'required',
                 'lote' => 'required',
                 'quantidade' => 'required',
-                'dt_validade' => $operacao == 0 ? 'required' : '',
                 'local_armazenamento' => $operacao == 0 ? 'required' : ''
             ]);
 
@@ -101,8 +100,7 @@ class EstoqueController extends Controller
                 
                 $array_store = [
                     'produto_id' => $request->produto, 
-                    'lote_id' => $request->lote, 
-                    'validade_produto' => DateTime::createFromFormat('Y-m-d',$request->dt_validade), 
+                    'lote_id' => $request->lote,  
                     'operacao' => $operacao,
                     'local_armazenamento' => $request->local_armazenamento, 
                     'qtd_produto' => $request->quantidade, 
@@ -129,8 +127,7 @@ class EstoqueController extends Controller
                 
                 $array_store = [
                     'produto_id' => $request->produto, 
-                    'lote_id' => $request->lote, 
-                    'validade_produto' => $produto[0]['validade_produto'], 
+                    'lote_id' => $request->lote,  
                     'operacao' => $operacao,
                     'local_armazenamento' => $produto[0]['local_armazenamento'], 
                     'qtd_produto' => $request->quantidade, 

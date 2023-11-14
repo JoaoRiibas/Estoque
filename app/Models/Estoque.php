@@ -18,10 +18,6 @@ class Estoque extends Model
         'qtd_produto', 
         'created_by'
     ];
-     
-    protected $casts = [
-        'validade_produto' => 'datetime:d/m/Y',
-    ];
 
     static $operacao_cor = [
         0 => 'success',

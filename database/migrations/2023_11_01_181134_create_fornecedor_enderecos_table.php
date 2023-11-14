@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cep');
             $table->string('estado');
             $table->string('cidade');
-            $table->string('endereco');
+            $table->string('logradouro');
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onDelete('cascade');
             $table->timestamps();
         });

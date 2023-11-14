@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fornecedores', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->string('cnpj');
-            $table->timestamps();
+        Schema::table('lotes', function(Blueprint $table) {
+            $table->string('validade')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fornecedores');
+        Schema::table('lotes', function($table){
+            $table->dropColumn('validade');
+        });
     }
 };
