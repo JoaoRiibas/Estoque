@@ -106,14 +106,12 @@ class FornecedorController extends Controller
 
             DB::commit();
 
-            // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
-            return redirect()->route('fornecedor.index');
+            return redirect()->route('fornecedor.index')->with('success', 'Registro salvo com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollback();
-
-            // return response()->json(['success'=> false, 'message' => '', 'data' => []]);
+            return redirect()->route('fornecedor.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao salvar o registro!');
         }
     }
 
@@ -127,12 +125,12 @@ class FornecedorController extends Controller
             
             DB::commit();
 
-            // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
-            return redirect()->route('fornecedor.index');
+            return redirect()->route('fornecedor.index')->with('success', 'Registro excluido com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollback();
+            return redirect()->route('fornecedor.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao excluir o registro!');
         }
     }
 }

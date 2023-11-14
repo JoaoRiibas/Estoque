@@ -81,11 +81,12 @@ class CategoriaController extends Controller
 
             DB::commit();
             
-            return redirect()->route('categoria.index');
+            return redirect()->route('categoria.index')->with('success', 'Registro salvo com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollBack();
+            return redirect()->route('categoria.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao salvar o registro!');
         }
     }
 
@@ -104,11 +105,12 @@ class CategoriaController extends Controller
 
             DB::commit();
 
-            return redirect()->route('categoria.index');
+            return redirect()->route('categoria.index')->with('success', 'Registro excluido com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollBack();
+            return redirect()->route('categoria.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao excluir o registro!');
         }
     }
 

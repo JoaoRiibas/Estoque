@@ -141,11 +141,12 @@ class EstoqueController extends Controller
 
             DB::commit();
 
-            return redirect()->route('estoque.index');
+            return redirect()->route('estoque.index')->with('success', 'Registro salvo com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollback();
+            return redirect()->route('estoque.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao salvar o registro!');
         }
     }
 

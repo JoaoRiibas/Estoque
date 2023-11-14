@@ -3,8 +3,8 @@
 ])
 
 @section('footer')
-    <button type="button" data-dismiss="modal"
-            class="btn btn-link"><i class="fa fa-times"></i> Fechar</button>
+    <button type="button" data-bs-dismiss="modal"
+        class="btn btn-outline-primary"><i class="fa fa-times"></i> Fechar</button>
 @endsection
 
 @section('content')

@@ -26,11 +26,10 @@
 </head>
 
 <body class="{{ $class ?? '' }}">
-
     @guest
         @yield('content')
     @endguest
-
+    
     @auth
         <div class="min-height-300 bg-primary position-absolute w-100"></div>
         

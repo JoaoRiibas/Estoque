@@ -86,12 +86,12 @@ class LoteController extends Controller
 
             DB::commit();
         
-            // return response()->json(['success'=> true, 'message' => '', 'data' => []]);
-            return redirect()->route('lote.index');
+            return redirect()->route('lote.index')->with('success', 'Registro salvo com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollBack();
+            return redirect()->route('lote.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao salvar o registro!');
         }
     }
 
@@ -105,11 +105,12 @@ class LoteController extends Controller
 
             DB::commit();
             
-            return redirect()->route('lote.index');
+            return redirect()->route('lote.index')->with('success', 'Registro excluido com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollBack();
+            return redirect()->route('lote.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao excluir o registro!');
         }
     }
 

@@ -128,11 +128,12 @@ class ProdutoController extends Controller
 
             DB::commit();
 
-            return redirect()->route('produto.index');
+            return redirect()->route('produto.index')->with('success', 'Registro salvo com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollback();
+            return redirect()->route('produto.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao salvar o registro!');
         }
     }
 
@@ -152,11 +153,12 @@ class ProdutoController extends Controller
 
             DB::commit();
             
-            return redirect()->route('produto.index');
+            return redirect()->route('produto.index')->with('success', 'Registro excluido com sucesso!');
 
         }catch(\Exception $e){
             report($e);
             DB::rollBack();
+            return redirect()->route('produto.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao excluir o registro!');
         }
     }
 
