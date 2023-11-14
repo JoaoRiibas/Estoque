@@ -29,7 +29,7 @@ class EstoqueController extends Controller
                 ['data' => 'qtd_produto', 'name' => 'qtd_produto', 'title' => 'Quantidade'],
                 ['data' => 'operacao', 'name' => 'operacao', 'title' => 'Operação'],
                 ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Data Entrada'],
-                ['data' => 'validade_produto', 'name' => 'validade_produto', 'title' => 'Válido Até'],
+                // ['data' => 'validade_produto', 'name' => 'validade_produto', 'title' => 'Válido Até'],
             ])->ajax([
                 'url' => route('estoque.filter'),
                 'type' => 'POST',
@@ -52,9 +52,9 @@ class EstoqueController extends Controller
             ->editColumn('created_at', function($estoque){
                 return $estoque->created_at->format('d/m/Y');
             })
-            ->editColumn('validade_produto', function($estoque){
-                return $estoque->validade_produto->format('d/m/Y');
-            })
+            // ->editColumn('validade_produto', function($estoque){
+            //     return $estoque->validade_produto->format('d/m/Y');
+            // })
             ->editColumn('operacao', function($estoque){
                 // return '<span class="badge bg-gradient-' . $estoque->getOperacaoCor() . '">' . $estoque->getOperacaoNome() . '</span>';
                 return $estoque->getOperacaoNome();

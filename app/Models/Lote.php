@@ -14,4 +14,8 @@ class Lote extends Model
         'descricao',
         'validade'
     ];
+
+    protected $casts = [
+        'validade' => 'datetime:d/m/Y',
+    ];
 }

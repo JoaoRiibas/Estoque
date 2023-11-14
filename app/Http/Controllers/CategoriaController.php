@@ -63,8 +63,9 @@ class CategoriaController extends Controller
             $array_store = [
                 'nome' => $request->nome,
                 'descricao' => $request->descricao, 
-                'foto_url' => 'Teste' 
+                'foto_path' => 'Teste' 
             ];
+
 
             if($id != 0) {
                 //UPDATE

@@ -18,7 +18,7 @@
         </div>
         <div class="col-6 form-group">
             <label>Data de Validade</label>
-            <input name="dt_validade" type="date" value="{{date('Y-m-d')}}" class="form-control">
+            <input name="dt_validade" type="date" value="{{!$lote->validade ? date('Y-m-d') : $lote->validade->format('Y-m-d')}}" class="form-control">
         </div>
     </div>
     <div class="row">

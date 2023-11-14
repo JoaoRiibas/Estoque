@@ -73,14 +73,15 @@ class FornecedorController extends Controller
             $array_store = [
                 'nome' => $request->nome,
                 'cnpj' => $request->cnpj,
-                'telefone' => $request->telefone
+                // 'telefone' => ''
+                //TODO::Cadastrar telefone
             ];
 
             $array_endereco = [
                 'cep' => $request->cep, 
                 'estado' => $request->estado, 
                 'cidade' => $request->cidade, 
-                'endereco' => $request->endereco
+                'logradouro' => $request->logradouro
             ];
 
             if($id != 0){

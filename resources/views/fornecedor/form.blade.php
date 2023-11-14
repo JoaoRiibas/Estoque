@@ -40,7 +40,7 @@
         </div>
         <div class="col-6 form-group">
             <label>Logradouro</label>
-            <input name="logradouro" type="text" value="{{isset($fornecedor->logradouro) ? $fornecedor->endereco->logradouro: ''}}" class="form-control">
+            <input name="logradouro" type="text" value="{{isset($fornecedor->endereco) ? $fornecedor->endereco->logradouro: ''}}" class="form-control">
         </div>
     </div>
 
