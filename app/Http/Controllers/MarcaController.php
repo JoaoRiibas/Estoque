@@ -45,10 +45,13 @@ class MarcaController extends Controller
     public function store(Request $request, $id = 0)
     {
         try{
+            $aux_validate = $id == 0 ? 'required|unique:marcas' : 'required';
+            
             $validator = Validator::make($request->all(), [
-                'nome' => 'required',
+                'nome' => $aux_validate,
             ],[
                 'nome.required' => 'Insira o nome da marca!',
+                'nome.unique' => 'Marca ja existente!',
             ]);
 
             if($validator->fails()){

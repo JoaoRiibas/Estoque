@@ -78,10 +78,22 @@ class ProdutoController extends Controller
                 'marca' => 'required',
                 'fornecedor' => 'required',
                 'unidade_medida' => 'required',
-                'vl_custo' => 'required',
-                'vl_venda' => 'required',
+                'vl_custo' => 'required|numeric',
+                'vl_venda' => 'required|numeric',
                 'descricao' => 'required',
                 'info' => 'required'
+            ],[
+                'nome.required' => 'Insira o nome do produto!',
+                'categoria.required' => 'A categoria é obrigatória!',
+                'marca.required' => 'A marca é obrigatória!',
+                'fornecedor.required' => 'O fornecedor é obrigatório!',
+                'unidade_medida.required' => 'A unidade de medida é obrigatória!',
+                'vl_custo.required' => 'O valor de compra é obrigatório!',
+                'vl_custo.numeric' => 'O valor de compra deve ser um número!',
+                'vl_venda.required' => 'O valor de venda é obrigatório!',
+                'vl_venda.numeric' => 'O valor de venda deve ser um número!',
+                'descricao.required' => 'A descricao é obrigatória!',
+                'info.required' => 'A informação nutricional é obrigatória!',
             ]);
 
             if($validator->fails()){
@@ -96,7 +108,6 @@ class ProdutoController extends Controller
                 'fornecedor_id' => $request->fornecedor, 
                 'nome' => $request->nome, 
                 'created_by' => Auth()->user()->id,
-                //TODO::Incluir campo updated by
                 'descricao' => $request->descricao, 
                 'unidade_medida' => $request->unidade_medida, 
                 'vl_custo' => $request->vl_custo, 
@@ -105,12 +116,12 @@ class ProdutoController extends Controller
             ];
 
             if($id != 0){
-                //CREATE
+                //UPDATE
                 unset($array_store['created_by']);
                 $produto = Produto::findOrFail($id);
                 $produto->update($array_store);
             }else{
-                //UPDATE
+                //CREATE
                 $produto = Produto::create($array_store);
             }
 

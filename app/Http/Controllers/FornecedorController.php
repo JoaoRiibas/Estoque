@@ -48,17 +48,20 @@ class FornecedorController extends Controller
     {
         try{
             
+            //TODO::validar telefones
             $validator = Validator::make($request->all(), [
                 'nome' => 'required',
-                'cnpj' => 'required',
-                'cep' => 'required',
+                'cnpj' => 'required|digits:14',
+                'cep' => 'required|digits:8',
                 'estado' => 'required',
                 'cidade' => 'required',
                 'logradouro' => 'required',
             ],[
                 'nome.required' => 'Insira o nome do fornecedor!',
                 'cnpj.required' => 'Insira o cnpj!',
+                'cnpj.digits' => 'O cnpj deve possuir 14 digitos!',
                 'cep.required' => 'Insira o cep!',
+                'cep.digits' => 'O cep deve possuir 8 digitos!',
                 'estado.required' => 'Insira o estado!',
                 'cidade.required' => 'Insira o cidade!',
                 'logradouro.required' => 'Insira o logradouro!'
@@ -73,7 +76,6 @@ class FornecedorController extends Controller
             $array_store = [
                 'nome' => $request->nome,
                 'cnpj' => $request->cnpj,
-                // 'telefone' => ''
                 //TODO::Cadastrar telefone
             ];
 

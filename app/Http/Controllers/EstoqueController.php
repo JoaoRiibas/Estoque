@@ -87,8 +87,10 @@ class EstoqueController extends Controller
             $validator = Validator::make($request->all(), [
                 'produto' => 'required',
                 'lote' => 'required',
-                'quantidade' => 'required',
+                'quantidade' => 'required|numeric',
                 'local_armazenamento' => $operacao == 0 ? 'required' : ''
+            ],[
+                'quantidade.numeric' => 'O campo valor da quantidade deve ser um número!',
             ]);
 
             if($validator->fails()){

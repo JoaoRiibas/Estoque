@@ -46,11 +46,14 @@ class CategoriaController extends Controller
     public function store(Request $request, $id = 0)
     {
         try{
+            $aux_validate = $id == 0 ? 'required|unique:categorias' : 'required';
+
             $validator = Validator::make($request->all(), [
-                'nome' => 'required',
+                'nome' => $aux_validate,
                 'descricao' => 'required',
             ],[
                 'nome.required' => 'Insira o nome da categoria!',
+                'nome.unique' => 'Categoria já existente!',
                 'descricao.required' => 'Adescrição é obrigatória!',
             ]);
 
@@ -64,8 +67,8 @@ class CategoriaController extends Controller
                 'nome' => $request->nome,
                 'descricao' => $request->descricao, 
                 'foto_path' => 'Teste' 
+                //TODO::Gravar path da foto
             ];
-
 
             if($id != 0) {
                 //UPDATE

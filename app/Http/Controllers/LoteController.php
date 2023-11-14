@@ -53,11 +53,14 @@ class LoteController extends Controller
         try{
 
             $validator = Validator::make($request->all(), [
-                'codigo' => 'required',
+                'codigo' => 'required|numeric',
                 'descricao' => 'required',
-                'dt_validade' => 'required',
+                'dt_validade' => 'required|date',
             ],[
                 'codigo.required' => 'Insira o código do lote!',
+                'codigo.numeric' => 'O codigo do lote deve ser um número!',
+                'descricao.required' => 'A descrição é obrigatória!',
+                'dt_validade.date' => 'A data de validade deve ser uma data!',
             ]);
 
             if($validator->fails()){
