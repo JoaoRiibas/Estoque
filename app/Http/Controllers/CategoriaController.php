@@ -95,6 +95,11 @@ class CategoriaController extends Controller
             DB::beginTransaction();
             
             $categoria = Categoria::findOrFail($id);
+            
+            if($categoria->getVinculoProduto() > 0){
+                throw new \Exception('Não é possivel excluir a categoria, pois existem produtos vinculados a ela', -1);
+            }
+            
             $categoria->delete();
 
             DB::commit();

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Produto extends Model
 {
@@ -40,6 +41,23 @@ class Produto extends Model
     public function detalhes()
     {
         return $this->hasOne(ProdutoDetalhe::class);
+    }
+
+    public function getQuantidadeProduto()
+    {
+        $entrada = DB::connection()->table('estoques')
+            ->where('produto_id', $this->id)
+            ->where('operacao', 0)
+            ->sum('qtd_produto');
+
+        $saida = DB::connection()->table('estoques')
+            ->where('produto_id', $this->id)
+            ->where('operacao', 1)
+            ->sum('qtd_produto');
+
+        $quantidade = $entrada - $saida;
+        
+        return $quantidade;
     }
     
 }

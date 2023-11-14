@@ -7,6 +7,7 @@ use App\Models\Fornecedor;
 use App\Models\Marca;
 use App\Models\Produto;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -141,6 +142,12 @@ class ProdutoController extends Controller
             DB::beginTransaction();
             
             $produto = Produto::findOrFail($id);
+            
+            $qtd = $produto->getQuantidadeProduto();
+            if($qtd != 0){
+                throw new \Exception('Não é possivel excluir o produto, pois ainda restam '. $qtd . ' unidades em estoque', -1);
+            }
+
             $produto->delete();
 
             DB::commit();
@@ -161,4 +168,5 @@ class ProdutoController extends Controller
 
         return view('produto.detalhes', compact('produto', 'categoria', 'fornecedor'));
     }
+
 }

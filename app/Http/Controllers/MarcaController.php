@@ -89,6 +89,11 @@ class MarcaController extends Controller
             DB::beginTransaction();
             
             $marca = Marca::findOrFail($id);
+
+            if($marca->getVinculoProduto() > 0){
+                throw new \Exception('Não é possivel excluir a marca, pois existem produtos vinculados a ela', -1);
+            }
+
             $marca->delete();
 
             DB::commit();
