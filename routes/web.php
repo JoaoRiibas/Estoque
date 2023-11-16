@@ -62,6 +62,7 @@ use App\Http\Controllers\ProdutoController;
 		Route::get('/form/{id?}', [FornecedorController::class, 'form'])->name('fornecedor.form');
 		Route::post('/store/{id?}', [FornecedorController::class, 'store'])->name('fornecedor.store');
 		Route::delete('/delete/{id}', [FornecedorController::class, 'delete'])->name('fornecedor.delete');
+		Route::get('/detalhes/{id}', [FornecedorController::class, 'detalhes'])->name('fornecedor.detalhes');
 	});
 
 	Route::group(['prefix' => 'produto'], function(){

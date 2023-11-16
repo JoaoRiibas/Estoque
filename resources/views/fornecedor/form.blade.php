@@ -45,11 +45,85 @@
         </div>
     </div>
 
+    <hr>
+
     <div class="row">
-        <div class="col-12 form-group">
-            <label>Telefone(s)</label>
-            {{-- <input name="telefone" type="number" value="{{$fornecedor->telefone}}" class="form-control"> --}}
+        
+        <div class="col-md-8 form-group">
+            <label>Telefone</label>
+            <input name="telefone" id="telefone" type="number" value="" class="form-control">
+            <button type="button" onclick = "addTelefone()" class="btn text-primary"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="col-md-4 form-group">
+            <label>Whatsapp</label>
+            <select class="form-control" id="whatsapp">
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
+        </div>
+        
+    </div>
+    
+    <hr>
+
+    <div class="row">  
+        <div class="table">  
+            <table id="table_telefones" class="col-md-12 table-responsive">
+                <tr id="tr_header">
+                    <th class="text-semibold">Telefone</th>
+                    <th class="text-center text-semibold">Whatsapp</th>
+                    <th class="text-center text-semibold">Ações</th>
+                </tr>
+                
+                @foreach($telefones as $telefone)
+                    <tr id="tr_{{$telefone->id}}">    
+                        <td>{{$telefone->numero}}</td>
+                        <td class="text-center">{{$telefone->is_whatsapp == 1 ? 'Sim' : 'Não'}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-link text-danger" onclick="remove_tr('{{$telefone->id}}')">
+                                <i class="fa fa fa-trash"></i></button>
+                            <input type="hidden" id="telefone_id_{{$telefone->id}}" name="telefone_id[{{$telefone->id}}]" value="{{$telefone->id}}">
+                            <input type="hidden" id="telefone_{{$telefone->id}}" name="telefone[{{$telefone->id}}]" value="{{$telefone->numero}}">
+                            <input type="hidden" id="whatsapp_{{$telefone->id}}" name="whatsapp[{{$telefone->id}}]" value="{{$telefone->is_whatsapp == 1 ? 'Sim' : 'Não'}}">
+                        </td>
+                    </tr>
+                @endforeach
+            
+            </table>
         </div>
     </div>
+
+    <script>
+        
+        function addTelefone(){
+            
+            var telefone = $('#telefone').val();
+            var whatsapp = $('#whatsapp').val();
+            var random = (Math.random() * 10).toString().replace('.','');
+
+            var html = '<tr id="tr_'+random+'">' +
+                '<td>'+telefone+'</td>' +
+                '<td class="text-center">'+whatsapp+'</td>' +
+                '<td class="text-center">' +
+                '<button type="button" class="btn btn-link text-danger" onclick="remove_tr(' + random + ')"><i class="fa fa fa-trash"></i></button>' +
+                '<input type="hidden" id="telefone_id_' + random +  '" name="telefone_id[' + random + ']" value="0">' +
+                '<input type="hidden" id="telefone_' + random +  '" name="telefone[' + random + ']" value="'+telefone+'">' +
+                '<input type="hidden" id="whatsapp_' + random +  '" name="whatsapp[' + random + ']" value="'+whatsapp+'">' +
+                '</td>' +
+                '</tr>';
+            
+            $('#table_telefones').append(html);
+            
+            $('#telefone').val('');
+            $('#whatsapp').val('Sim');
+        }
+
+        function remove_tr(id) {
+            console.log(id);
+            $('#tr_' + id).remove();
+        }
+
+
+    </script>
 
 @endsection

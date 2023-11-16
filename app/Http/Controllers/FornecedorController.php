@@ -30,7 +30,6 @@ class FornecedorController extends Controller
         $html = $builder->columns([
             ['data' => 'nome', 'name' => 'nome', 'title' => 'Nome', 'class'=> 'text-semibold'],
             ['data' => 'cnpj', 'name' => 'cnpj', 'title' => 'CNPJ', 'class'=> 'text-semibold'],
-            ['data' => 'telefone', 'name' => 'telefone', 'title' => 'Telefone', 'class'=> 'text-semibold'],
             ['data' => 'action', 'name' => 'action', 'title' => 'Ações', 'class'=> 'td-actions'],
         ]);
 
@@ -40,15 +39,15 @@ class FornecedorController extends Controller
     public function form($id = 0)
     {
         $fornecedor = $id > 0 ? Fornecedor::findOrFail($id) : new Fornecedor;
-        
-        return view('fornecedor.form', compact('fornecedor'));
+        $telefones = $fornecedor->telefones;
+
+        return view('fornecedor.form', compact('fornecedor', 'telefones'));
     }
 
     public function store(Request $request, $id = 0)
     {
         try{
             
-            //TODO::validar telefones
             $validator = Validator::make($request->all(), [
                 'nome' => 'required',
                 'cnpj' => 'required|digits:14',
@@ -64,7 +63,8 @@ class FornecedorController extends Controller
                 'cep.digits' => 'O cep deve possuir 8 digitos!',
                 'estado.required' => 'Insira o estado!',
                 'cidade.required' => 'Insira o cidade!',
-                'logradouro.required' => 'Insira o logradouro!'
+                'logradouro.required' => 'Insira o logradouro!',
+                'telefone.required' => 'O fornecedor deve ter no mínimo um telefone!',
             ]);
 
             if($validator->fails()){
@@ -76,7 +76,6 @@ class FornecedorController extends Controller
             $array_store = [
                 'nome' => $request->nome,
                 'cnpj' => $request->cnpj,
-                //TODO::Cadastrar telefone
             ];
 
             $array_endereco = [
@@ -88,20 +87,46 @@ class FornecedorController extends Controller
 
             if($id != 0){
                 //UPDATE
-
                 $fornecedor = Fornecedor::findOrFail($id);
                 $fornecedor->update($array_store);
                 $fornecedor->endereco()->update($array_endereco);
-                
-                //TODO::Fazer update do telefone
 
             }else{
                 //CREATE
-
                 $fornecedor = Fornecedor::create($array_store);
                 $fornecedor->endereco()->create($array_endereco);
+            }
+
+            $telefones = $fornecedor->telefones()->pluck('id');
+
+            //Deleta o telefone que não está na request
+            foreach($telefones as $telefone){
+                $aux = 0;
                 
-                //TODO::Fazer create do telefone
+                foreach($request->telefone_id as $req_tel){
+                    if($telefone == $req_tel){
+                        $aux++;
+                    } 
+                }
+
+                if($aux == 0){
+                    $fornecedor->telefones()->findOrfail($telefone)->delete();
+                }
+            }
+
+            foreach($request->telefone_id as $key => $tel_id){
+                
+                $array_telefone = [
+                    'numero' => $request->telefone[$key],
+                    'is_whatsapp' => $request->whatsapp[$key] == 'Sim' ? 1 : 0
+                ];
+
+                if($tel_id == 0){
+                    $telefone = $fornecedor->telefones()->create($array_telefone);
+                }else{
+                    $telefone = $fornecedor->telefones()->findOrFail($tel_id);
+                    $telefone->update($array_telefone);
+                }
             }
 
             DB::commit();
@@ -132,5 +157,14 @@ class FornecedorController extends Controller
             DB::rollback();
             return redirect()->route('fornecedor.index')->with('error', $e->getCode() == -1 ? $e->getMessage() : 'Ocorreu um erro ao excluir o registro!');
         }
+    }
+
+    public function detalhes($id)
+    {
+        $fornecedor = Fornecedor::with('endereco')->findOrFail($id);
+        $telefones = $fornecedor->telefones;
+
+        return view('fornecedor.detalhes', compact('fornecedor', 'telefones'));
+
     }
 }

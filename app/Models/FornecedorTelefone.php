@@ -12,7 +12,7 @@ class FornecedorTelefone extends Model
     protected $fillable = [
         'fornecedor_id', 
         'numero',
-        'principal',
         'is_whatsapp'
     ];
+ 
 }
