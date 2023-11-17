@@ -24,10 +24,6 @@
                                             <input type="password" name="password" class="form-control form-control-lg" aria-label="Password" placeholder="Senha">
                                             @error('password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                         </div>
-                                        {{-- <div class="form-check form-switch">
-                                            <input class="form-check-input" name="remember" type="checkbox" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">Lembrar-me</label>
-                                        </div> --}}
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Entrar</button>
                                         </div>
