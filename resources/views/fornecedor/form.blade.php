@@ -101,6 +101,10 @@
             var whatsapp = $('#whatsapp').val();
             var random = (Math.random() * 10).toString().replace('.','');
 
+            if(!telefone){
+                throw ('O telefone é obrigatório');
+            }
+
             var html = '<tr id="tr_'+random+'">' +
                 '<td>'+telefone+'</td>' +
                 '<td class="text-center">'+whatsapp+'</td>' +
@@ -119,10 +123,8 @@
         }
 
         function remove_tr(id) {
-            console.log(id);
             $('#tr_' + id).remove();
         }
-
 
     </script>
 
