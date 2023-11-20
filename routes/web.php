@@ -24,6 +24,7 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\LoteController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\UserController;
 
 	Route::get('/', function () {
 		return redirect('/dashboard');
@@ -91,6 +92,13 @@ use App\Http\Controllers\ProdutoController;
 		Route::get('/form/{id?}', [CategoriaController::class, 'form'])->name('categoria.form');
 		Route::post('/store/{id?}', [CategoriaController::class, 'store'])->name('categoria.store');
 		Route::delete('/delete/{id}', [CategoriaController::class, 'delete'])->name('categoria.delete');
+	});
+
+	Route::group(['prefix' => 'user'], function(){
+		Route::get('/', [UserController::class, 'index'])->name('user.index');
+		Route::get('/form/{id?}', [UserController::class, 'form'])->name('user.form');
+		Route::post('/store/{id?}', [UserController::class, 'store'])->name('user.store');
+		// Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 	});
 
 	

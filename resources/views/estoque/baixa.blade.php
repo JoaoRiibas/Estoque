@@ -28,7 +28,7 @@
             <select name="lote" class="form-control">
                 <option value="">Selecione</option>
                 @foreach($lotes as $lote)
-                    <option value="{{$lote->id}}">{{$lote->cod_lote}}</option>
+                    <option value="{{$lote->id}}">{{$lote->cod_lote . ' - ' . $lote->descricao}}</option>
                 @endforeach
             </select>
         </div>

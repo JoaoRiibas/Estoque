@@ -30,12 +30,6 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                                    <p class="mb-1 text-sm mx-auto">
-                                        Esqueceu a senha? Resete sua senha 
-                                        <a href="{{ route('reset-password') }}" class="text-primary text-gradient font-weight-bold">aqui</a>
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
                                         Não possui uma conta?
                                         <a href="{{ route('register') }}" class="text-primary text-gradient font-weight-bold">Criar</a>
