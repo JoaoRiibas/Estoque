@@ -29,12 +29,12 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                {{-- <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
                                         Não possui uma conta?
                                         <a href="{{ route('register') }}" class="text-primary text-gradient font-weight-bold">Criar</a>
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

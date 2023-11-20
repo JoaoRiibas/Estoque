@@ -1,5 +1,5 @@
 @extends('layouts.modal', [
-    'title' => 'Produtos da categoria - ' . $categoria->nome
+    'title' => 'Produtos da categoria - ' . $categoria->nome,
 ])
 
 @section('footer')
