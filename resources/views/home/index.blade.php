@@ -1,7 +1,8 @@
-@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
+@extends('layouts.app')
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Categorias de Produtos'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
+
     <div class="container-fluid py-4">
  
         <div class="row">
@@ -9,9 +10,10 @@
             
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
+                        <img src="/img/categorias/{{$categorias[$i]['foto_path']}}">
                         <div class="card-body p-3">
                             <div class="row">
-                                <a href={{route('dashboard.listagem', $categorias[$i]['id'])}} class="font-weight-bold">
+                                <a onclick="openModal('{{route('dashboard.listagem', $categorias[$i]['id'])}}')">
                                     {{$categorias[$i]['nome']}}
                                     <h6 class="text-semibold"><small>{{$categorias[$i]['descricao']}}</small></h6>
                                 </a>

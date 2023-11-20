@@ -46,8 +46,6 @@ use App\Http\Controllers\ProdutoController;
 
 	Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 	Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
-
-	
 	
 	Route::group(['prefix' => 'marca'], function(){
 		Route::get('/', [MarcaController::class, 'index'])->name('marca.index');

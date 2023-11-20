@@ -20,4 +20,8 @@
         <label>Descrição</label>
         <input name="descricao" type="text-area" value="{{$categoria->descricao}}" class="form-control">
     </div>
+    <div class="col-12 form-group">
+        <label for="image">Imagem</label>
+        <input name="image" type="file" value="{{$categoria->path}}" class="form-control form-control-file">
+    </div>
 @endsection

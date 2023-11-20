@@ -59,15 +59,5 @@ class Produto extends Model
         
         return $quantidade;
     }
-
-    public function getLotes(){
-        
-        $lotes = DB::connection()->table('estoques as e')
-            ->join('lotes as l', 'l.id', 'e.lote_id')
-            ->where('produto_id', $this->id)
-            ->get();
-
-        return $lotes;
-    }
     
 }

@@ -51,10 +51,13 @@ class CategoriaController extends Controller
             $validator = Validator::make($request->all(), [
                 'nome' => $aux_validate,
                 'descricao' => 'required',
+                'image' => 'required|mimes:jpg'
             ],[
                 'nome.required' => 'Insira o nome da categoria!',
                 'nome.unique' => 'Categoria já existente!',
                 'descricao.required' => 'Adescrição é obrigatória!',
+                'image.required' => 'A imagem é obrigatória!',
+                'image.mimes' => 'A imagem deve ser do tipo jpg'
             ]);
 
             if($validator->fails()){
@@ -63,11 +66,19 @@ class CategoriaController extends Controller
 
             DB::beginTransaction();
 
+            if($request->hasFile('image') && $request->file('image')->isValid()){
+
+                $image = $request->image;
+                $extension = $image->extension();
+                $image_name = 'categoria' . strtotime("now"). '.' . $extension;
+
+                $image->move(public_path('img/categorias'), $image_name);
+            }
+
             $array_store = [
                 'nome' => $request->nome,
                 'descricao' => $request->descricao, 
-                'foto_path' => 'Teste' 
-                //TODO::Gravar path da foto
+                'foto_path' => $image_name 
             ];
 
             if($id != 0) {

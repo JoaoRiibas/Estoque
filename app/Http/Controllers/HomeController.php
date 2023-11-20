@@ -21,6 +21,7 @@ class HomeController extends Controller
 
     public function listagem($id)
     {
+        $categoria = Categoria::findOrFail($id);
 
         $query = "
             WITH sum_estoque as (
@@ -53,10 +54,38 @@ class HomeController extends Controller
             where categoria_id = {$id}
             group by l.id, p.nome";
 
-        $sql = DB::select($query);
+        $produtos = DB::select($query);
 
-        dd('here');
+        $array = [];
 
-        return view('home.listagem');
+        foreach($produtos as $key => $produto){
+            if(isset($array[$produto->nome])){
+
+                $array[$produto->nome][] = [
+                    'validade' => $produto->validade,
+                    'lote' => $produto->cod_lote,
+                    'entrada' => $produto->entrada,
+                    'saida' => $produto->saida
+                ];
+
+            }else{
+                
+                $array[$produto->nome][] = [
+                    'validade' => $produto->validade,
+                    'lote' => $produto->cod_lote,
+                    'entrada' => $produto->entrada,
+                    'saida' => $produto->saida
+                ];
+            }
+        }
+
+        $array_total = [];
+
+        foreach($array as $k => $a){
+            $prod = Produto::where('nome', $k)->first();
+            $array_total [$k] = $prod->getQuantidadeProduto();
+        }
+        
+        return view('home.listagem', compact('categoria', 'array', 'array_total'));
     }
 }

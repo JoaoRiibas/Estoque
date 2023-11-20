@@ -1,6 +1,6 @@
 <div class="modal-dialog {{ $size ?? 'modal-lg' }}">
     @if(isset($formroute))
-    <form action="{{ $formroute }}" class="axios-form" method="post">@csrf
+    <form action="{{ $formroute }}" class="axios-form" method="post" enctype="multipart/form-data">@csrf
     @endif
 
     <div class="modal-content">
